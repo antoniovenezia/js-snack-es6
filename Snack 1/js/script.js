@@ -7,7 +7,7 @@
 
 // JS 5
 
-/*
+
 var bikeArray = [
     {
         name: "Bianchi",
@@ -42,10 +42,10 @@ for (var x = 0; x < bikeArray.length; x++) {
 
 console.log(lastBikeMinorWeight);
 
-*/
+
 
 //ES6
-
+/*
 const bikeArray = [
     {
         name: "Bianchi",
@@ -81,3 +81,5 @@ for (let x = 0; x < bikeArray.length; x++) {
 const { name, weight } = lastBikeMinorWeight;
 
 // console.log(`Lo studente più anziano è ${name} ${weight}`);
+
+*/
