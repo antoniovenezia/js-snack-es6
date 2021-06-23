@@ -7,66 +7,65 @@
 //corrispondente alla squadra con più falli subiti.
 
 
-
-function numRandom() {
-    return Math.floor(Math.random() * 100);
-}
-
-console.log(numRandom());
-
-
 let team = [
     {
         nome: "Inter",
-        puntiFatti: 0,
-        falliSubiti: 0
+        puntiFatti: 10,
+        falliSubiti: 3
     },
     {
         nome: "Juve",
-        puntiFatti: 0,
-        falliSubiti: 0
+        puntiFatti: 34,
+        falliSubiti: 2
     },
     {
         nome: "Milan",
-        puntiFatti: 0,
-        falliSubiti: 0
+        puntiFatti: 1,
+        falliSubiti: 15
     },
     {
         nome: "Lazio",
-        puntiFatti: 0,
-        falliSubiti: 0
+        puntiFatti: 9,
+        falliSubiti: 1
     },
 ]
 
-console.log(team);
+console.log(team.nome);
 
-let tableHTML = document.querySelector(".table");
-var lastTeamFalliSubMaggiori;
-var lastFalliTeamFalliSubMaggiori;
+const tableHTML = document.querySelector(".table");
+let lastFalliTeamFalliSubMaggiori = 0;
+let lastTeamFalliSubMaggiori;
 
 for (let x = 0; x < team.length; x++) {
-    team[x].puntiFatti = numRandom();
-    team[x].falliSubiti = numRandom();
+    var thisTeam = team[x].falliSubiti;
+
+    if (typeof lastFalliTeamFalliSubMaggiori === 'undefined' || thisTeam > lastFalliTeamFalliSubMaggiori) {
+        lastFalliTeamFalliSubMaggiori = thisTeam;
+        lastTeamFalliSubMaggiori = team[x];
+        
+    }
+}
+
+console.log(lastTeamFalliSubMaggiori);
+
+for (let x = 0; x < team.length; x++) {
+
     const { nome, puntiFatti, falliSubiti } = team[x];
     //     console.log(nome);
 
+    let customClass = "";
+
+    if (team[x] === lastTeamFalliSubMaggiori) {
+        customClass = "falli-subiti";
+    }
+
     tableHTML.innerHTML += `
-    <ul>
+    <ul class="${customClass}">
         <li>${nome}</li>
         <li>${puntiFatti}</li>
         <li>${falliSubiti}</li>
     </ul>
     `
-}
-
-for (var i = 0; i < team.length; i++) {
-    var thisTeam = team[i].falliSubiti;
-
-    if (typeof lastFalliTeamFalliSubMaggiori === 'undefined' || thisTeam > lastFalliTeamFalliSubMaggiori) {
-        lastTeamFalliSubMaggiori = team[i];
-        lastFalliTeamFalliSubMaggiori = thisTeam;
-        document.getElementsByClassName("table")[i].backgroundColor = "yellow";
-    }
 }
 
 
